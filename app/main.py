@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from app.core.config import settings
-from app.core.database import Base, engine
+# from app.core.database import Base, engine
 from app.api import closet, events, feedback, recommendations, users
 
 app = FastAPI(
@@ -23,10 +23,10 @@ app.add_middleware(
 )
 
 
-@app.on_event("startup")
-async def on_startup():
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
+# @app.on_event("startup")
+# async def on_startup():
+#     async with engine.begin() as conn:
+#         await conn.run_sync(Base.metadata.create_all)
 
 
 @app.exception_handler(Exception)
